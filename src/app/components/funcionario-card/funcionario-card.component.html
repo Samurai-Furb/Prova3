@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="foto">
+    <img [src]="funcionario.foto" alt="{{funcionario.nome}}">
+  </div>
+  <div class="nome">{{ funcionario.nome }}</div>
+  <div class="prop1">{{ funcionario.subobjeto.propriedade1 }}</div>
+  <div class="prop2">{{ funcionario.subobjeto.propriedade2 }}</div>
+  <div class="email">
+    <a [href]="'mailto:' + funcionario.email">{{ funcionario.email }}</a>
+  </div>
+</div>

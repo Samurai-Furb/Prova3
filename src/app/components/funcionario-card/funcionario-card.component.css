@@ -1,0 +1,46 @@
+.card {
+  width: 250px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  background: #fff;
+}
+
+.foto {
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+
+.foto img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.nome {
+  font-family: Arial, sans-serif;
+  padding: 10px 8px 0 8px;
+  font-weight: 700;
+}
+
+.prop1,
+.prop2 {
+  font-family: Arial, sans-serif;
+  padding: 10px;
+}
+
+.email {
+  background: gray;
+  padding: 8px;
+  font-family: Verdana, sans-serif;
+}
+
+.email a {
+  color: white;
+  text-decoration: none;
+}
