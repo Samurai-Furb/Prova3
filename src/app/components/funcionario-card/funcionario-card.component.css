@@ -1,46 +1,49 @@
 .card {
-  width: 250px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   background: #fff;
+  padding: 20px;
+  width: 90%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  transition: 0.25s;
+  text-align: center;
 }
 
-.foto {
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 150px;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
-.foto img {
-  max-width: 100%;
-  max-height: 100%;
+.card .foto img {
+  width: 100%;
+  height: 220px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
-.nome {
-  font-family: Arial, sans-serif;
-  padding: 10px 8px 0 8px;
+.card .nome {
+  font-size: 1.3rem;
   font-weight: 700;
+  margin-top: 12px;
+  color: #1e1e2f;
 }
 
-.prop1,
-.prop2 {
-  font-family: Arial, sans-serif;
-  padding: 10px;
+.card .prop1,
+.card .prop2 {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 5px;
 }
 
-.email {
-  background: gray;
-  padding: 8px;
-  font-family: Verdana, sans-serif;
-}
-
-.email a {
-  color: white;
+.card .email a {
+  display: inline-block;
+  margin-top: 12px;
+  color: #0077ff;
+  font-weight: 600;
   text-decoration: none;
+  transition: 0.2s;
+}
+
+.card .email a:hover {
+  text-decoration: underline;
 }
