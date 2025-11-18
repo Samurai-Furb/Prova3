@@ -6,7 +6,7 @@ export interface Subobjeto {
 export interface Funcionario {
   id: number;
   nome: string;
-  foto: string; // URL da imagem
+  foto: string;
   email: string;
   subobjeto: Subobjeto;
 }

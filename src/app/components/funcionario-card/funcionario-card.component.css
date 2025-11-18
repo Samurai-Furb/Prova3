@@ -1,49 +1,59 @@
 .card {
-  background: #fff;
-  padding: 20px;
-  width: 90%;
-  height: auto;
-  border-radius: 14px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-  transition: 0.25s;
+  width: 250px;
+  height: 380px;    
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding-bottom: 15px;
   text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  transform: scale(1.03);
 }
 
-.card .foto img {
+.foto {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
+  height: 200px;         
+  background: black;     
+  overflow: hidden;      
 }
 
-.card .nome {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-top: 12px;
-  color: #1e1e2f;
+.foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     
+} 
+
+.nome {
+  font-family: Arial, sans-serif; 
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 10px;                  
 }
 
-.card .prop1,
-.card .prop2 {
-  font-size: 1rem;
-  color: #555;
-  margin-top: 5px;
+.prop1 {
+  font-family: Arial, sans-serif; 
+  padding: 10px;                  
 }
 
-.card .email a {
-  display: inline-block;
-  margin-top: 12px;
-  color: #0077ff;
-  font-weight: 600;
+.prop2 {
+  font-family: Arial, sans-serif; 
+  padding: 10px;                  
+}
+
+.email {
+  background: gray;            
+  padding: 10px;
+}
+
+.email a {
+  font-family: Verdana; 
+  color: white;
   text-decoration: none;
-  transition: 0.2s;
-}
-
-.card .email a:hover {
-  text-decoration: underline;
+  word-break: break-all;
 }
