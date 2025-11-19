@@ -3,45 +3,74 @@
   justify-content: center;
   align-items: center;
   padding: 60px 20px;
-  background: linear-gradient(135deg, #f0f4ff, #ffffff);
   min-height: 100vh;
+
+  /* Fundo  */
+  background: linear-gradient(135deg, #0e1a2b, #14273d, #1f3a5c);
+  background-size: cover;
+  position: relative;
 }
 
+/* Efeito de brilho */
+.home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  opacity: 0.15;
+  background: radial-gradient(circle at top left, #4da3ff55, transparent 70%);
+}
+
+/* CARD PRINCIPAL */
 .home-content {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  max-width: 800px;
-  padding: 40px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-  animation: fadeIn 1s ease-in-out;
-  margin-bottom: 200px;
+  max-width: 780px;
+  padding: 50px 40px;
+
+
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+
+  animation: fadeIn 1s ease;
 }
 
+/* TÍTULO */
 .home h1 {
-  font-size: 2.8rem;
-  color: #2c3e50;
-  margin-bottom: 20px;
+  font-size: 2.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+  text-shadow: 0 2px 20px rgba(77, 163, 255, 0.5);
 }
 
+/* TEXTO */
 .home p {
-  font-size: 1.2rem;
-  color: #555;
+  font-size: 1.25rem;
+  color: #dbe8ff;
   line-height: 1.8;
   margin-bottom: 30px;
 }
 
-.welcome-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+.home strong {
+  color: #77c0ff;
 }
 
+/* ANIMAÇÃO DE ENTRADA */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;

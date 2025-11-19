@@ -1,20 +1,53 @@
+
+
 .funcionarios-page {
-  width: 92%;
-  margin-top: 25vh;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;                  
+  min-height: 100vh;            
+  margin: 0;
+  padding-top: 22vh;
+  padding-bottom: 40px;
+
+  /* Fundo  */
+  background: linear-gradient(135deg, #0e1a2b, #14273d, #1f3a5c);
+  background-size: cover;
+  background-attachment: fixed;
 }
+
+
+/* --- TÍTULO --- */
 
 .funcionarios-page h2 {
   text-align: center;
-  font-size: 2rem;
-  color: #1e1e2f;
-  margin-bottom: 25px;
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+
+  color: #e9f3ff;
+  text-shadow: 0 2px 18px rgba(77, 163, 255, 0.4);
 }
 
+
+
+
 .cards-container {
+  width: 100%;                        
+  padding: 0 40px;                    
   display: grid;
-  gap: 25px;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+
+  
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

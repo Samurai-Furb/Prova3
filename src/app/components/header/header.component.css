@@ -3,51 +3,72 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: #1c1c2b;
   padding: 18px 40px;
-  color: white;
+  z-index: 1000;
+
+  /* Glass corporativo premium */
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-  z-index: 1000;
+
+  /* Sombra suave futurista */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
 }
 
-a:last-child{
-  margin-right: 100px;
-}
-
-a{
-  padding: 15px;
-}
-
+/* Logo */
 .app-header .logo {
-  font-size: 1.6rem;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   user-select: none;
+  color: #e9f3ff;
+  text-shadow: 0 2px 20px rgba(77, 163, 255, 0.4);
 }
 
+/* Menu */
 .app-header .menu {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 35px;
 }
 
 .app-header .menu a {
   text-decoration: none;
-  color: #dcdcdc;
-  font-size: 1rem;
+  color: #dbe8ff;
+  font-size: 1.05rem;
   font-weight: 600;
-  transition: 0.3s;
-  padding-bottom: 3px;
+
+  transition: 0.3s ease;
+  position: relative;
+  padding: 6px 4px;
 }
 
+/* Hover futurista */
 .app-header .menu a:hover {
   color: #ffffff;
+  text-shadow: 0 0 10px rgba(120, 190, 255, 0.7);
 }
 
+/* Linha ativa com efeito glow */
 .app-header .menu a.active {
   color: #72c1ff;
-  border-bottom: 2px solid #72c1ff;
+  font-weight: 700;
+}
+
+.app-header .menu a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background: #72c1ff;
+  box-shadow: 0 0 12px #72c1ff;
+  border-radius: 4px;
 }
