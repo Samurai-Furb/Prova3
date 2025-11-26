@@ -2,13 +2,11 @@
 
   <h2>Cadastro – Consultar / Alterar / Excluir</h2>
 
-=
   <div class="consulta-box">
     <input type="number" [(ngModel)]="idConsulta" placeholder="Informe o ID">
     <button (click)="consultar()">Consultar</button>
   </div>
 
-=
   <div *ngIf="dados" class="dados-card">
     <p><strong>ID:</strong> {{ dados.id }}</p>
     <p><strong>Nome:</strong> {{ dados.nome }}</p>
@@ -19,12 +17,10 @@
     <button class="btn-excluir" (click)="excluir()">Exclusão</button>
   </div>
 
-=
   <div *ngIf="mensagem" [ngClass]="status === 'Ok' ? 'msg-ok' : 'msg-erro'">
     {{ mensagem }}
   </div>
 
-=
   <div *ngIf="dados" class="alterar-box">
     <h3>Alterar Cadastro</h3>
 

@@ -31,26 +31,42 @@ export class CadastroComponent {
     if (!this.idConsulta) return;
 
     this.cadastroService.consultar(this.idConsulta).subscribe((res: any) => {
-      this.dados = res;
+      this.dados = res || null;
 
-      this.form.nome = res.nome;
-      this.form.departamento = res.departamento;
-      this.form.endereco = res.endereco;
-      this.form.email = res.email;
+      if (res) {
+        this.form.nome = res.nome || '';
+        this.form.departamento = res.departamento || '';
+        this.form.endereco = res.endereco || '';
+        this.form.email = res.email || '';
+      }
+    }, err => {
+      console.error('Erro ao consultar', err);
+      this.dados = null;
+      this.status = 'Erro';
+      this.mensagem = 'Falha na consulta';
     });
   }
 
   excluir() {
     this.cadastroService.excluir(this.idConsulta).subscribe((res: any) => {
-      this.status = res.status;
-      this.mensagem = res.mensagem;
+      this.status = res?.status ?? 'Erro';
+      this.mensagem = res?.mensagem ?? 'Resposta inválida';
+      if (this.status === 'Ok') this.dados = null;
+    }, err => {
+      console.error('Erro ao excluir', err);
+      this.status = 'Erro';
+      this.mensagem = 'Falha na exclusão';
     });
   }
 
   alterar() {
     this.cadastroService.alterar(this.idConsulta, this.form).subscribe((res: any) => {
-      this.status = res.status;
-      this.mensagem = res.mensagem;
+      this.status = res?.status ?? 'Erro';
+      this.mensagem = res?.mensagem ?? 'Resposta inválida';
+    }, err => {
+      console.error('Erro ao alterar', err);
+      this.status = 'Erro';
+      this.mensagem = 'Falha na alteração';
     });
   }
 }
