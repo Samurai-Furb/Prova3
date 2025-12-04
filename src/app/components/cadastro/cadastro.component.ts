@@ -12,13 +12,20 @@ import { CadastroService } from '../../services/cadastro.service';
 })
 export class CadastroComponent {
 
-  idConsulta: number = 0;
-  dados: any = null;
+  idBusca: number | null = null;
+  
+  funcionario: any = {
+    id: null,
+    nome: '',
+    departamento: '',
+    endereco: '',
+    email: ''
+  };
 
-  status: string = '';
   mensagem: string = '';
-
-  form = {
+  status: string = ''; 
+  novoFuncionario = {
+    id: null, 
     nome: '',
     departamento: '',
     endereco: '',
@@ -26,47 +33,92 @@ export class CadastroComponent {
   };
 
   constructor(private cadastroService: CadastroService) {}
-
   consultar() {
-    if (!this.idConsulta) return;
+    if (!this.idBusca) {
+      alert('Digite um ID para consultar.');
+      return;
+    }
 
-    this.cadastroService.consultar(this.idConsulta).subscribe((res: any) => {
-      this.dados = res || null;
+    this.limparFeedback();
 
-      if (res) {
-        this.form.nome = res.nome || '';
-        this.form.departamento = res.departamento || '';
-        this.form.endereco = res.endereco || '';
-        this.form.email = res.email || '';
+    this.cadastroService.consultar(this.idBusca).subscribe({
+      next: (dados) => {
+        this.funcionario = dados;
+        
+        if (!this.funcionario.id && !this.funcionario.nome) {
+           this.status = 'Erro';
+           this.mensagem = 'Funcionário não encontrado ou resposta vazia.';
+        }
+      },
+      error: (err) => {
+        console.error(err);
+        this.status = 'Erro';
+        this.mensagem = 'Erro na requisição de consulta.';
+        this.limparDadosTela();
       }
-    }, err => {
-      console.error('Erro ao consultar', err);
-      this.dados = null;
-      this.status = 'Erro';
-      this.mensagem = 'Falha na consulta';
     });
   }
 
   excluir() {
-    this.cadastroService.excluir(this.idConsulta).subscribe((res: any) => {
-      this.status = res?.status ?? 'Erro';
-      this.mensagem = res?.mensagem ?? 'Resposta inválida';
-      if (this.status === 'Ok') this.dados = null;
-    }, err => {
-      console.error('Erro ao excluir', err);
-      this.status = 'Erro';
-      this.mensagem = 'Falha na exclusão';
+    if (!this.funcionario.id) return;
+
+    this.cadastroService.excluir(this.funcionario.id).subscribe({
+      next: (res) => {
+        this.status = res.status;
+        this.mensagem = res.mensagem;
+
+        if (this.status === 'Ok') {
+          this.limparDadosTela();
+        }
+      },
+      error: (err) => {
+        console.error(err);
+        this.status = 'Erro';
+        this.mensagem = 'Falha técnica ao tentar excluir.';
+      }
     });
   }
 
   alterar() {
-    this.cadastroService.alterar(this.idConsulta, this.form).subscribe((res: any) => {
-      this.status = res?.status ?? 'Erro';
-      this.mensagem = res?.mensagem ?? 'Resposta inválida';
-    }, err => {
-      console.error('Erro ao alterar', err);
-      this.status = 'Erro';
-      this.mensagem = 'Falha na alteração';
+    if (!this.funcionario.id) return;
+
+    this.cadastroService.alterar(this.funcionario.id, this.funcionario).subscribe({
+      next: (res) => {
+        this.status = res.status;
+        this.mensagem = res.mensagem;
+      },
+      error: (err) => {
+        console.error(err);
+        this.status = 'Erro';
+        this.mensagem = 'Falha técnica ao tentar alterar.';
+      }
     });
+  }
+
+  cadastrar() {
+    this.cadastroService.cadastrar(this.novoFuncionario).subscribe({
+      next: (res) => {
+        this.status = res.status;
+        this.mensagem = res.mensagem;
+        
+        if (this.status === 'Ok') {
+          this.novoFuncionario = { id: null, nome: '', departamento: '', endereco: '', email: '' };
+        }
+      },
+      error: (err) => {
+        console.error(err);
+        this.status = 'Erro';
+        this.mensagem = 'Falha técnica ao tentar cadastrar.';
+      }
+    });
+  }
+
+  private limparFeedback() {
+    this.status = '';
+    this.mensagem = '';
+  }
+
+  private limparDadosTela() {
+    this.funcionario = { id: null, nome: '', departamento: '', endereco: '', email: '' };
   }
 }

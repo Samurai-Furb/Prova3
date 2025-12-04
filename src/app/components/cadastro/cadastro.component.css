@@ -1,83 +1,124 @@
 .cadastro-page {
-  width: 100%;
-  min-height: 100vh;
-  padding-top: 22vh;
-  padding-bottom: 40px;
-
-  background: linear-gradient(135deg, #0e1a2b, #14273d, #1f3a5c);
-  background-size: cover;
-  background-attachment: fixed;
-
-  color: #dbe8ff;
-  text-align: center;
+  width: 95%;
+  max-width: 800px;
+  margin: 100px auto 40px; /* Margem superior para o header fixo */
+  padding-bottom: 50px;
+  color: #fff;
 }
 
 .cadastro-page h2 {
-  font-size: 2.4rem;
+  text-align: center;
   margin-bottom: 30px;
-  text-shadow: 0 2px 20px rgba(77,163,255,0.5);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-.consulta-box,
-.dados-card,
-.alterar-box {
-  width: 90%;
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 25px;
-
-  background: rgba(255,255,255,0.08);
-  border-radius: 16px;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+.card-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
+.card-box h3 {
+  margin-top: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  color: #72c1ff;
+}
+
+/* Inputs e Labels */
 input {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 6px;
   border: none;
-  outline: none;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
 }
 
+input.readonly {
+  background: rgba(200, 200, 200, 0.8);
+  color: #555;
+  cursor: not-allowed;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.input-group input {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+/* Botões */
 button {
-  background: rgba(255,255,255,0.15);
-  color: white;
-  padding: 12px 20px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: .3s;
-}
-
-button:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-.btn-excluir {
-  background: #e63946;
-}
-
-.btn-excluir:hover {
-  background: #ff4d5b;
-}
-
-.msg-ok {
-  background: #0f8a3a;
-  padding: 12px;
-  margin: 15px auto;
-  width: 60%;
-  border-radius: 10px;
+  font-weight: bold;
   color: white;
+  transition: 0.3s;
+  margin-top: 10px;
 }
 
-.msg-erro {
-  background: #b91c1c;
-  padding: 12px;
-  margin: 15px auto;
-  width: 60%;
-  border-radius: 10px;
+.btn-consultar { background: #3f51b5; }
+.btn-consultar:hover { background: #2c3e50; }
+
+.btn-excluir { background: #e63946; width: 100%; }
+.btn-excluir:hover { background: #b91c1c; }
+
+.btn-alterar { background: #fca311; color: #000; width: 100%; }
+.btn-alterar:hover { background: #e08e0b; }
+
+.btn-cadastrar { background: #2a9d8f; width: 100%; }
+.btn-cadastrar:hover { background: #21867a; }
+
+/* Grid para Formulários */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+}
+
+.form-grid label {
+  font-size: 0.9rem;
+  color: #ddd;
+  margin-top: 5px;
+}
+
+/* Feedback Box */
+.feedback-msg {
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  border: 2px solid transparent;
   color: white;
+  font-weight: 500;
+  animation: fadeIn 0.5s ease;
+}
+
+.bg-green {
+  background-color: #2e7d32; /* Verde */
+  border-color: #4caf50;
+}
+
+.bg-red {
+  background-color: #c62828; /* Vermelho */
+  border-color: #e57373;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

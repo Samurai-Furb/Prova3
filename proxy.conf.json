@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://bu.furb.br/mcardoso/progWeb/apiRestAval.php",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "logLevel": "debug"
+  }
+}
