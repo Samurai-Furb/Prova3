@@ -33,27 +33,32 @@ export class CadastroComponent {
   };
 
   constructor(private cadastroService: CadastroService) {}
+
   consultar() {
     if (!this.idBusca) {
       alert('Digite um ID para consultar.');
       return;
     }
-
     this.limparFeedback();
 
     this.cadastroService.consultar(this.idBusca).subscribe({
       next: (dados) => {
-        this.funcionario = dados;
-        
-        if (!this.funcionario.id && !this.funcionario.nome) {
+        // Se a API retornar "null" ou vazio
+        if (!dados) {
            this.status = 'Erro';
-           this.mensagem = 'Funcionário não encontrado ou resposta vazia.';
+           this.mensagem = 'Funcionário não encontrado.';
+           this.limparDadosTela();
+           return;
         }
+        this.funcionario = dados;
+        // Limpa mensagem de erro anterior se houver
+        this.status = '';
+        this.mensagem = '';
       },
       error: (err) => {
         console.error(err);
         this.status = 'Erro';
-        this.mensagem = 'Erro na requisição de consulta.';
+        this.mensagem = 'Funcionário não encontrado ou erro na API.';
         this.limparDadosTela();
       }
     });
@@ -61,31 +66,25 @@ export class CadastroComponent {
 
   excluir() {
     if (!this.funcionario.id) return;
-
     this.cadastroService.excluir(this.funcionario.id).subscribe({
       next: (res) => {
-        this.status = res.status;
-        this.mensagem = res.mensagem;
-
-        if (this.status === 'Ok') {
-          this.limparDadosTela();
-        }
+        this.status = 'Ok';
+        this.mensagem = 'Funcionário excluído com sucesso!';
+        this.limparDadosTela();
       },
       error: (err) => {
-        console.error(err);
         this.status = 'Erro';
-        this.mensagem = 'Falha técnica ao tentar excluir.';
+        this.mensagem = 'Falha ao excluir.';
       }
     });
   }
-
   alterar() {
     if (!this.funcionario.id) return;
 
     this.cadastroService.alterar(this.funcionario.id, this.funcionario).subscribe({
       next: (res) => {
-        this.status = res.status;
-        this.mensagem = res.mensagem;
+        this.status = 'Ok';
+        this.mensagem = 'Dados alterados com sucesso!';
       },
       error: (err) => {
         console.error(err);
@@ -94,21 +93,19 @@ export class CadastroComponent {
       }
     });
   }
-
-  cadastrar() {
+ cadastrar() {
     this.cadastroService.cadastrar(this.novoFuncionario).subscribe({
       next: (res) => {
-        this.status = res.status;
-        this.mensagem = res.mensagem;
-        
-        if (this.status === 'Ok') {
-          this.novoFuncionario = { id: null, nome: '', departamento: '', endereco: '', email: '' };
-        }
+        // Se chegou aqui, deu certo (status 200)
+        console.log('Sucesso:', res);
+        this.status = 'Ok';
+        this.mensagem = 'Funcionário cadastrado com sucesso!';
+        this.novoFuncionario = { id: null, nome: '', departamento: '', endereco: '', email: '' };
       },
       error: (err) => {
-        console.error(err);
+        console.error('Erro:', err);
         this.status = 'Erro';
-        this.mensagem = 'Falha técnica ao tentar cadastrar.';
+        this.mensagem = 'Falha ao cadastrar.';
       }
     });
   }
