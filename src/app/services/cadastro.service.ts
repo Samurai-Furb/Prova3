@@ -16,7 +16,7 @@ export class CadastroService {
   }
 
   excluir(id: number) {
-    return this.http.delete<any>(`${this.baseUrl}/%{id}`);
+    return this.http.delete<any>(`${this.baseUrl}/${id}`);
   }
 
   alterar(id: number, dados: any) {
